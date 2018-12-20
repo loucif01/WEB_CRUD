@@ -1,0 +1,311 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', type='text/css')
+    link(rel='stylesheet', href='stylesheets/admintheme.css', type='text/css')
+    link(rel='stylesheet', href='https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css', type='text/css')
+    
+  body
+    nav.navbar.navbar-expand-md.bg-dark.navbar-dark
+      a.navbar-brand(href='#')
+        i.fa.d-inline.fa-lg.fa-YA
+      .container
+        a.navbar-brand(href='#')
+          img.d-inline-block.align-top(src='images/dnSMn5Hh_400x400.jpg', width='35', height='30', alt='')
+          b  YASSIR
+        button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbar2SupportedContent')
+          span.navbar-toggler-icon
+        #navbar2SupportedContent.collapse.navbar-collapse.text-center.justify-content-end
+          ul.navbar-nav
+            li.nav-item
+              a.nav-link(href='home') Home
+            li.nav-item
+              a.nav-link(href='subjects') Subjects
+            li.nav-item
+              a.nav-link(href='staff') Staff 
+            li.nav-item
+              a.nav-link(href='contact') Contact
+    .p-4.w-100
+      .container.d-inline-flex.px-5.w-100
+        .row
+          .col-md-12.px-5.w-100
+            p.lead.text-capitalize.text-light.w-100.text-center
+              i.fa.fa-fw.fa-user.bg-light
+              b
+                | Access  level :  #{a}                                    
+                span(style='clor :#800000;')   welcome in users CRUD table
+    .py-0
+      .container.h-100.py-0.bg-light.w-75
+       table#example.display(style='width:100%')
+           thead
+                th Username
+                th Company Name
+                th Role 
+                th Last Update 
+                th Delete
+                th Update
+                
+           tbody 
+               for result in userMap
+                 
+                   tr
+                       td #{result.username}
+                       td #{result.companyName}
+                       td 
+                           if result.admin
+                             | Admin
+                           else  
+                             | User                       
+                       td #{result.last_update}
+                       td 
+                           a.btn.btn-link(href='#', data-toggle='modal', data-target='#modal3',id="#{result.username}" title='Delete User' ,onclick='Delete(this.childNodes[0].innerHTML)')
+                             
+                             img.d-inline-block.align-top(src='images/delete.png', height='30', alt='' )                              
+                       td
+                           a.btn.btn-link(href='#', data-toggle='modal', data-target='#modal4', title='Update User',onclick='FillForm(this.parentNode.parentNode.childNodes)'  )
+                             img.d-inline-block.align-top(src='images/update.png', height='30', alt='')      
+                           
+        
+    .py-5
+      .container.py-5
+        .row
+          .col-md-3
+            a.btn.btn-sm.btn-link(href='#', style='color : #8ac148 >\
+            <i class=;', fa='', data-toggle='modal', data-target='#modal1')
+              i.fa.fa-fw.w-100.fa-plus-circle.fa-3x(style='color :#1065ef;', title='Add New User')
+          .col-md-3
+          .col-md-3
+          .col-4.col-md-3.align-self-end.justify-content-end.d-inline-flex
+            a.btn.btn-link.text-capitalize.text-left.btn-sm(href='#', data-toggle='modal', data-target='#modal2', title='Sign Out')
+              i.fa.fa-power-off.fa-fw.fa-3x
+              b
+    #modal2.modal.fade
+      .modal-dialog.modal-sm(role='document')
+        .modal-content.text-center.bg-primary
+          .modal-body.bg-light.text-dark
+            p.m-4.text-capitalize.text-dark
+              b  do you want really to sign out?
+            button#logOut.btn.mr-3.btn-secondary.text-dark(type='button')
+              b Yes
+            button.btn.ml-3.btn-info.text-dark(type='button', data-dismiss='modal')  No
+    #modal3.modal.fade
+      .modal-dialog.modal-sm(role='document')
+        .modal-content.text-center.bg-primary
+          .modal-body.bg-light.text-dark
+            p.m-4.text-capitalize.text-dark
+              b  do you want really to delete this user ?
+            button.btn.mr-3.btn-secondary.text-dark(type='button')
+              b#delete Yes
+            button.btn.ml-3.btn-info.text-dark(type='button', data-dismiss='modal')  No
+    #modal1.modal
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header.bg-light
+            h5.modal-title.text-capitalize.text-center Add New User
+            button.close.bg-light(type='button', data-dismiss='modal')
+              span ×
+          p.text-dark.lead.mx-2.text-capitalize Please Fill In This Form To Create New User.
+          .card-body.text-center.py-0
+            form#addNew
+              .form-group.mb-2
+                .input-group.border-0
+                  input#username.form-control(type='text', placeholder='username', name='username',required='')
+              .form-group.mb-3
+                .input-group.border-0
+                  input#password.form-control(type='password', placeholder='password', name='password',required='')
+              .form-group.mb-3
+                .input-group.border-0
+                  input#password2.form-control(type='password',placeholder='confirme password', name='password2',required='')
+              .form-group.mb-4
+                .input-group.border-0
+                  input#companyName.form-control(type='text', placeholder='company name', name='companyName',required='')
+              .form-group.mb-4
+                .input-group.border-0
+                  select#admin.form-control(name='admin',required='')
+                    option(value='1') Admin
+                    option(value='0') User
+                .d-flex
+                  label
+                p
+                button.btn.mt-4.mb-3.rounded.btn-lg.btn-secondary.text-dark(type='submit')
+                  b.text-capitalize.text-center submit
+        
+    #modal4.modal
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header.bg-light
+            h5.modal-title.text-capitalize.text-center Update User
+            button.close.bg-light(type='button', data-dismiss='modal')
+              span ×
+          p.text-dark.lead.mx-2.text-capitalize Chage What Do You Want ,Then Submit!
+          .card-body.text-center.py-0
+            form#update
+              .form-group.mb-2
+                .input-group.border-0
+                  input#username2.form-control(type='text',placeholder='username', name='username2', required='' )
+              .form-group.mb-3
+                .input-group.border-0
+                  input#password3.form-control(type='password',placeholder='password', name='password3', required='')
+              .form-group.mb-3
+                .input-group.border-0
+                  input#password4.form-control(type='password',placeholder='confirme password', name='password4', required='')
+              .form-group.mb-4
+                .input-group.border-0
+                  input#companyName2.form-control(type='text',placeholder='company name', name='companyName', required='')
+              .form-group.mb-4
+                .input-group.border-0
+                  select#admin2.form-control(name='admin2',required='')
+                    option(value='1') Admin
+                    option(value='0') User
+                .d-flex
+                  label
+                p
+                button.btn.mt-4.mb-3.rounded.btn-lg.btn-secondary.text-dark(type='submit')
+                  b.text-capitalize.text-center submit
+       
+    .py-5
+      .container
+        .row
+          .col-md-12
+            p.lead Lead paragraph 
+    script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+    script(src='javascripts/jquery-3.3.1.js')
+    script(src='javascripts/jquery.dataTables.min.js')   
+    
+    script.
+     $(document).ready(function() {
+        $('#example').DataTable({
+        //"paging":   false,
+        //"ordering": false,
+        "info":     false,
+        searching:  false,       
+         });  
+        }); 
+
+
+      
+        $('#addNew').submit(function() {
+        $.ajax({
+         type:'POST',
+         url:'/staff-logged',
+         data:  {username: $('#username').val(), password: $('#password').val(),admin: $('#admin').val(),companyName: $('#companyName').val()},
+         success:function(result){
+           location.reload();
+            if(!result){
+               //$('form input[name="username"]').css("background-color", "red");
+            }
+         },
+         error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            console.log(thrownError);
+         }
+         });
+        return false;
+        });
+        
+
+          
+        function Delete(id) {
+         $("#delete").on("click", function(){
+         $.ajax({
+         type:'DELETE',
+         url:'/staff-logged',
+         data:  {_id:id},
+         success:function(result){
+           
+           location.reload();
+            if(!result){
+               //$('form input[name="username"]').css("background-color", "red");
+            }
+         },
+         error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            console.log(thrownError);
+         }
+         });
+            $("#modal3").fadeOut('slow');
+          });
+        }
+
+
+
+         $("#logOut").on("click", function(){
+         $.ajax({
+         type:'GET',
+         url:'/logout',
+         data:  {},      
+         success:function(result){
+           
+           location.reload();
+            if(!result){
+               //$('form input[name="username"]').css("background-color", "red");
+            }
+         },
+         error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            console.log(thrownError);
+         }
+         });
+            $("#modal2").fadeOut('slow');
+          });
+        
+
+         
+        function FillForm(data){
+          document.getElementById("username2").value = data[0].innerHTML;
+          document.getElementById("companyName2").value = data[1].innerHTML;
+          
+          if(data[2].innerText == "Admin" ){
+            document.getElementById("admin2").selectedIndex = 0;
+          }else{
+            document.getElementById("admin2").selectedIndex = 1;
+          }
+        }
+        
+
+
+        $("#update").submit(function(){
+         $.ajax({
+         type:'put',
+         url:'/staff-logged',
+         data:  {username: $('#username2').val(), password: $('#password3').val(),admin: $('#admin2').val(),companyName: $('#companyName2').val()},
+         success:function(result){
+           location.reload();
+            if(!result){
+               //$('form input[name="username"]').css("background-color", "red");
+            }
+         },
+         error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            console.log(thrownError);
+         }
+         });
+        return false;
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+          
+         
+
+        

@@ -1,0 +1,100 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', type='text/css')
+    link(rel='stylesheet', href='stylesheets/subjectstheme.css', type='text/css')
+  body
+    nav.navbar.navbar-expand-md.bg-dark.navbar-dark
+      a.navbar-brand(href='#')
+        i.fa.d-inline.fa-lg.fa-YA
+      .container
+        a.navbar-brand(href='#')
+          img.d-inline-block.align-top(src='images/dnSMn5Hh_400x400.jpg', width='35', height='30', alt='')
+          b YASSIR
+        button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbar2SupportedContent')
+          span.navbar-toggler-icon
+        #navbar2SupportedContent.collapse.navbar-collapse.text-center.justify-content-end
+         ul.navbar-nav
+            li.nav-item
+              a.nav-link(href='home') Home
+            li.nav-item.active
+              a.nav-link(href='subjects')
+                | Subjects
+                span.sr-only (current)
+            li.nav-item
+              a.nav-link(href='staff') Staff
+            li.nav-item
+              a.nav-link(href='contact') Contact
+    .py-5
+      .container
+        .row
+          .col-md-12
+            h1.text-center.text-capitalize
+              b.text-light welcom in our Subjects!
+            p.text-light.text-center.text-capitalize(style='font-size: 1.4em;')
+              | Only members can see this section!
+              button.btn.btn-link.btn-sm(type='button', data-dismiss='modal', data-toggle='modal', data-target='#modal', style='font-size: 0.75em;')
+                b
+                  span.text-capitalize Sign In
+              b    
+              br
+              |  Not a memeber yet?
+              button.btn.btn-link.btn-sm(type='button', data-dismiss='modal', data-toggle='modal', data-target='#modal1', style='font-size: 0.75em;')
+                b
+                  span.text-capitalize Sign up
+            a(href='</p')  
+          a(href='</p')  
+        a(href='</p')  
+      a(href='</p')  
+    #modal.modal
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header.bg-light
+            h5.modal-title.text-capitalize.text-center.text-dark sign in
+            button.close.bg-light(type='button', data-dismiss='modal')
+              span ×
+          .card-body.text-center.py-3
+            form
+              .form-group.mb-2
+                .input-group.border-0
+                  input#inlineFormInputGroup.form-control(type='text', placeholder='username', name='username', required='')
+              .form-group.mb-3
+                .input-group.border-0
+                  input#inlineFormInputGroup.form-control(type='text', placeholder='password', name='password', required='')
+              .d-flex
+                label
+                  b.text-capitalize
+                    input(type='checkbox', checked='checked', name='remember', style='margin-bottom:15px', value='on')
+                    |  Remember me
+              p
+              button.btn.mt-4.mb-3.rounded.btn-lg.btn-secondary.text-dark(type='submit')
+                b.text-capitalize.text-center submit
+       
+    a(href='</p')
+      script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
+      script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+    
+    #modal1.modal
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header.bg-light
+            h5.modal-title.text-capitalize.text-center sign up
+            button.close.bg-light(type='button', data-dismiss='modal')
+              span ×
+          p.text-dark.lead.mx-2.text-capitalize Please Fill In This Form To Become Member.
+          .card-body.text-center.py-0
+            form
+              .form-group.mb-2
+                .input-group.border-0
+                  input#inlineFormInputGroup1.form-control(type='text', placeholder='username', name='username', required='')
+              .form-group.mb-3
+                .input-group.border-0
+                  input#inlineFormInputGroup2.form-control(type='password', placeholder='password', name='password', required='')
+              .form-group.mb-4
+                .form-group.py-2.mx-1
+                  button.btn.mt-4.mb-3.rounded.btn-lg.btn-secondary.text-dark(type='submit')
+                    b.text-capitalize.text-center submit
+      
